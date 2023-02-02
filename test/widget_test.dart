@@ -5,6 +5,7 @@
 // gestures. You can also use WidgetTester to find child widgets in the widget
 // tree, read text, and verify that the values of widget properties are correct.
 
+import 'package:aids_statistics/src/model/aids_statistics.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:xml/xml.dart';
 
@@ -336,61 +337,4 @@ void main() {
       print('${element.year}년도 : ${element.inumAll}명');
     });
   });
-}
-
-class AidsStatisticsVo {
-  String? year;
-  String? inumAll;
-  String? inumMale;
-  String? inumFml;
-  String? nmthAll;
-  String? nmthMale;
-  String? nmthFml;
-  String? cmnmAll;
-  String? cmnmMale;
-  String? cmnmFml;
-  String? nmsvrAll;
-  String? nmsvrMale;
-  String? nmsvrFml;
-  //생성자 생성
-  AidsStatisticsVo({
-    this.year,
-    this.inumAll,
-    this.inumMale,
-    this.inumFml,
-    this.nmthAll,
-    this.nmthMale,
-    this.nmthFml,
-    this.cmnmAll,
-    this.cmnmMale,
-    this.cmnmFml,
-    this.nmsvrAll,
-    this.nmsvrMale,
-    this.nmsvrFml,
-  });
-
-  factory AidsStatisticsVo.fromXml(XmlElement xml) {
-    return AidsStatisticsVo(
-      year : XmlUtils.searchResult(xml, 'year'),
-      inumAll : XmlUtils.searchResult(xml, 'inumAll'),
-      inumMale : XmlUtils.searchResult(xml, 'inumMale'),
-      inumFml : XmlUtils.searchResult(xml, 'inumFml'),
-      nmthAll : XmlUtils.searchResult(xml, 'nmthAll'),
-      nmthMale : XmlUtils.searchResult(xml, 'nmthMale'),
-      nmthFml : XmlUtils.searchResult(xml, 'nmthFml'),
-      cmnmAll : XmlUtils.searchResult(xml, 'cmnmAll'),
-      cmnmMale : XmlUtils.searchResult(xml, 'cmnmMale'),
-      cmnmFml : XmlUtils.searchResult(xml, 'cmnmFml'),
-      nmsvrAll : XmlUtils.searchResult(xml, 'nmsvrAll'),
-      nmsvrMale : XmlUtils.searchResult(xml, 'nmsvrMale'),
-      nmsvrFml : XmlUtils.searchResult(xml, 'nmsvrFml'),
-    );
-  }
-}
-
-class XmlUtils {
-  static String searchResult(XmlElement xml, String key) {
-    String result = xml.findAllElements(key).map((e) => e.text).isEmpty? "" : xml.findAllElements(key).map((e) => e.text).first;
-    return result;
-  }
 }
